@@ -1,0 +1,69 @@
+type Query {
+  feed: [Post!]!
+  achievements: [Achievement!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
+  achievement(id: ID!): Achievement
+  badge(id: ID!): Badge
+  me: User
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createDraft(title: String!,content: String!, ): Post!
+  createAchievement(title: String!, description: String!, ): Achievement!
+  createBadge(title: String!, description: String!, tags: String!, givenTo: ID!, ): Badge!
+  publish(id: ID!): Post!
+  deletePost(id: ID!): Post!
+  deleteAchievement(id: ID!): Achievement!
+  deleteBadge(id: ID!): Badge!
+}
+
+type Subscription {
+  feedSubscription: Post
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  posts: [Post!]!
+}
+
+type Post {
+  id: ID!
+  published: Boolean!
+  title: String!
+  content: String!
+  author: User!
+}
+
+type Achievement {
+  id: ID!
+  title: String!
+  description: String!
+  published: Boolean!
+  createdBy: User!
+}
+
+type Badge {
+  id: ID!
+  title: String!
+  description: String!
+  published: Boolean!
+  createdBy: User!
+  givenTo: User!
+  tags: String!
+  achievement: Achievement!
+}
+
+type Tag {
+  id: ID!
+  title: String!
+}
