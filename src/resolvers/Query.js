@@ -4,6 +4,9 @@ const Query = {
   feed(parent, args, context) {
     return context.prisma.posts({ where: { published: true } })
   },
+  activity(parent, args, context) {
+    return context.prisma.badges({ where: { published: true } })
+  },
   achievements(parent, args, context) {
     return context.prisma.achievements()
   },

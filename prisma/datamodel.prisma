@@ -30,9 +30,9 @@ type Badge {
   id: ID! @unique
   title: String! @unique
   description: String!
-  published: Boolean!
-  createdBy: User!
-  givenTo: User!
+  published: Boolean! @default(value: "true")
+  createdBy: User! @relation(name: "Badge_FromUser")
+  givenTo: User! @relation(name: "Badge_GivenToUser")
   tags: String!
 }
 

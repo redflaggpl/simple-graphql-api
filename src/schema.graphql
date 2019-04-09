@@ -1,5 +1,6 @@
 type Query {
   feed: [Post!]!
+  activity: [Badge!]!
   achievements: [Achievement!]!
   drafts: [Post!]!
   post(id: ID!): Post
@@ -22,6 +23,7 @@ type Mutation {
 
 type Subscription {
   feedSubscription: Post
+  activitySubscription: Badge
 }
 
 type AuthPayload {
@@ -60,7 +62,6 @@ type Badge {
   createdBy: User!
   givenTo: User!
   tags: String!
-  achievement: Achievement!
 }
 
 type Tag {
